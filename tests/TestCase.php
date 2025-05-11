@@ -3,8 +3,8 @@
 namespace LeTamanoir\PhpTsRpc\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use LeTamanoir\PhpTsRpc\PhpTsRpcServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

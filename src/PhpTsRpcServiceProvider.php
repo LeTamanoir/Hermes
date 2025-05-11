@@ -2,9 +2,9 @@
 
 namespace LeTamanoir\PhpTsRpc;
 
+use LeTamanoir\PhpTsRpc\Commands\PhpTsRpcCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use LeTamanoir\PhpTsRpc\Commands\PhpTsRpcCommand;
 
 class PhpTsRpcServiceProvider extends PackageServiceProvider
 {
