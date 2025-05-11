@@ -1,22 +1,12 @@
 <?php
 
-namespace LeTamanoir\PhpTsRpc\Tests;
+namespace PhpTsRpc\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use LeTamanoir\PhpTsRpc\PhpTsRpcServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use PhpTsRpc\PhpTsRpcServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'LeTamanoir\\PhpTsRpc\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [
@@ -26,12 +16,45 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
+        config()->set('data.validation_strategy', 'always');
 
-        /*
-         foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__ . '/database/migrations') as $migration) {
-            (include $migration->getRealPath())->up();
-         }
-         */
+        config()->set('data.normalizers', [
+            \Spatie\LaravelData\Normalizers\ModelNormalizer::class,
+            \Spatie\LaravelData\Normalizers\ArrayableNormalizer::class,
+            \Spatie\LaravelData\Normalizers\ObjectNormalizer::class,
+            \Spatie\LaravelData\Normalizers\ArrayNormalizer::class,
+            \Spatie\LaravelData\Normalizers\JsonNormalizer::class,
+        ]);
+
+        // config()->set('typescript-transformer', [
+        //     // 'auto_discover_types' => [
+        //     //     app_path()
+        //     // ],
+
+        //     // 'collectors' => [
+        //     //     \Spatie\TypeScriptTransformer\Collectors\DefaultCollector::class,
+        //     // ],
+
+        //     'transformers' => [
+        //         // \Spatie\LaravelTypeScriptTransformer\Transformers\SpatieStateTransformer::class,
+        //         // \Spatie\TypeScriptTransformer\Transformers\SpatieEnumTransformer::class,
+        //         \Spatie\TypeScriptTransformer\Transformers\DtoTransformer::class,
+        //     ],
+
+        //     // 'default_type_replacements' => [
+        //     //     \DateTime::class => 'string',
+        //     //     \DateTimeImmutable::class => 'string',
+        //     //     \Carbon\CarbonImmutable::class => 'string',
+        //     //     \Carbon\Carbon::class => 'string',
+        //     // ],
+
+        //     // 'output_file' => resource_path('types/generated.d.ts'),
+
+        //     // 'writer' => \Spatie\TypeScriptTransformer\Writers\TypeDefinitionWriter::class,
+
+        //     // 'formatter' => null,
+
+        //     // 'transform_to_native_enums' => false,
+        // ]);
     }
 }

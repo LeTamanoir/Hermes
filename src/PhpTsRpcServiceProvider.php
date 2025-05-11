@@ -1,8 +1,8 @@
 <?php
 
-namespace LeTamanoir\PhpTsRpc;
+namespace PhpTsRpc;
 
-use LeTamanoir\PhpTsRpc\Commands\PhpTsRpcCommand;
+use PhpTsRpc\Commands\GenerateCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -18,8 +18,6 @@ class PhpTsRpcServiceProvider extends PackageServiceProvider
         $package
             ->name('php-ts-rpc')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_php_ts_rpc_table')
-            ->hasCommand(PhpTsRpcCommand::class);
+            ->hasCommand(GenerateCommand::class);
     }
 }

@@ -1,5 +1,5 @@
 <?php
 
-use LeTamanoir\PhpTsRpc\Tests\TestCase;
+use PhpTsRpc\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
