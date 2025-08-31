@@ -4,7 +4,8 @@ use Hermes\Rpc;
 
 it('can generate types', function () {
 
-    enum Status:int {
+    enum Status: int
+    {
         case TODO = 0;
         case DONE = 1;
     }
@@ -39,6 +40,7 @@ it('can generate types', function () {
             'Hello',
             function (HelloInput $input): HelloResponse {
                 dump($input);
+
                 return new HelloResponse(
                     message: "Hello, {$input->name}!",
                     tags: $input->tags,
